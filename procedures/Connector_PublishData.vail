@@ -1,0 +1,13 @@
+//
+// Procedure used typically in Connector inbound request
+// rules to send the data to the appropriate Adapter
+// based on the data type provided.
+//
+// @param type The Vantiq data type to publish into
+// @param value The data of the given data type
+//
+PROCEDURE Connector_PublishData(type, value) 
+
+var adapterTopic = "/system/adapter/" + type + "/inbound"
+
+PUBLISH value TO TOPIC @adapterTopic

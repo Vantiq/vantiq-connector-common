@@ -1,0 +1,23 @@
+//
+// Procedure that sends a given action to a 3rd party system.
+//
+// This procedure determines determines the connector to use
+// based on the target system.
+//
+// @param system The target end system for the action (e.g. Salesforce)
+// @param action The specific action to trigger (e.g. UpdateCase)
+// @param payload The action-specific data to send as part of the action.
+//
+PROCEDURE Connector_SendAction(system, action, payload) 
+
+// TODO: Look up connector based on system
+var system = "Zapier"
+var connectorTopic = "/system/connector/" + system + "/outbound"
+
+var actionMessage = {
+    system: system,
+    action: action,
+    payload: payload
+}
+
+PUBLISH actionMessage TO TOPIC @connectorTopic
