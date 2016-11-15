@@ -11,9 +11,10 @@
 PROCEDURE Connector_SendAction(system, action, payload) 
 
 // TODO: Look up connector based on system
-var system = "Zapier"
-var connectorTopic = "/system/connector/" + system + "/outbound"
+var connector = "Zapier"
+var connectorTopic = "/system/connector/" + connector + "/outbound"
 
+// Build action message for connector
 var actionMessage = {
     system: system,
     action: action,
