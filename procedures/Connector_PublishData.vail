@@ -8,6 +8,6 @@
 //
 PROCEDURE Connector_PublishData(type, value) 
 
-var adapterTopic = "/system/adapter/" + type + "/inbound"
+var adapterTopic = "/system/adapter/inbound/" + type
 
 PUBLISH value TO TOPIC @adapterTopic

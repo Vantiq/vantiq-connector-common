@@ -1,0 +1,22 @@
+//
+// Procedure that sends a given action to a 3rd party system.
+//
+// This procedure builds the action structure and publishes
+// the message to a specific topic.  This allows connectors 
+// to listen to all actions from specific adapters, if desired.
+//
+// @param system The target end system for the action (e.g. Salesforce)
+// @param action The specific action to trigger (e.g. UpdateCase)
+// @param payload The action-specific data to send as part of the action.
+//
+PROCEDURE Adapter_SendAction(system, action, payload) 
+
+var fullAction = system + "_" + action
+var adapterTopic = "/system/adapter/outbound/" + fullAction
+
+var actionMessage = {
+    action: fullAction,
+    payload: payload
+}
+
+PUBLISH actionMessage TO TOPIC @adapterTopic
